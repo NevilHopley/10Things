@@ -1,0 +1,107 @@
+Can't remember which package your function comes from?
+Using the following, you can type the first 3 letters of your function, and the option to select a code snippet pops up and it will bring the function and its package name into your script.
+Note: only works when typing commands at the start of a new line of code.
+
+Go to...
+
+RStudio > Tools > Global Options > Code > Snippets > Edit Snippets
+Copy and paste the text below onto the end of the list that's already there.
+
+--------------------------------------------------------------------------------------------------------
+
+snippet str_replace
+	stringr::str_replace(string = ${1:},
+											 pattern = "${2:}",
+											 replacement = "${3:}")
+											 
+snippet str_detect
+	stringr::str_detect(string = ${1:},
+											pattern = "${2:}")					 
+											 
+snippet cond_true
+	{\(x) if(${1:condition}) ${2:function_if_true}(x, ${3:function_arguments}) else x}() |>
+	
+snippet cond_true_false
+	{\(x) if(${1:condition}) ${2:function_if_true}(x, ${3:function_arguments})
+		else 
+		${4:function_if_false}(x, ${5:function_arguments})}() |>
+	
+snippet map
+	purrr::map(.progress = TRUE,
+						 .x = ${1:vector_name},
+						 .f = ~ ${2:function_name}(${3:function_argument} = .x) |>
+							 purrr::list_rbind(names_to = "id") |>
+							 dplyr::mutate(source = ${4:vector_name}[id],
+														 .before = tidyselect::everything(),
+														 .keep = "unused")
+														 
+snippet dplyr
+	dplyr::
+
+snippet mutate
+	dplyr::mutate(${1})
+
+snippet filter
+	dplyr::filter(${1})
+
+snippet select
+	dplyr::select(${1})
+	
+snippet drop
+	tidyr::drop_na(${1})
+	
+snippet distinct
+	dplyr::distinct(${1})
+	
+snippet pivot_wider
+	tidyr::pivot_wider(id_cols = ${1:vector_of_col_names},
+										 names_from = ${2:column_name},
+										 values_from = ${3:vector_name})
+										 
+snippet pivot_longer
+	tidyr::pivot_longer(cols = ${1:vector_of_col_names},
+											names_to = "${2:column_name}",
+											values_to = "${3:column_name}")
+											
+snippet across
+	dplyr::across(.cols = ${1:vector_of_col_names},
+								.fns = ~ ${2:function})
+								
+snippet group_by
+	dplyr::group_by(${1:columns}) |> 
+	
+snippet summarise
+	dplyr::summarise(${1:column_name} = ${2:expression},
+									 .groups = "drop")
+									 
+snippet ungroup
+	dplyr::ungroup()
+
+snippet arrange
+	dplyr::arrange(${1:columns})
+	
+snippet rename
+	dplyr::rename(${1:new_name} = ${2:old_name})
+	
+snippet bind_rows
+	dplyr::bind_rows(${1:object})
+	
+snippet left_join
+	dplyr::left_join(y = ${1:data_frame},
+									 by = join_by(${2:column_name} == ${3:column_name})
+									 
+snippet ggplot
+	ggplot2::ggplot(data = ${1},
+									mapping = ggplot2::aes(${2})) +
+												
+snippet geom_point
+	ggplot2::geom_point(${1}) +
+
+snippet geom_col
+	ggplot2::geom_col(${1}) +
+
+snippet sqatheme
+	SQAplot::theme_sqa() +
+
+snippet theme
+	ggplot2::theme(${1}) +

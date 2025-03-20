@@ -35,6 +35,21 @@ ggplot2::theme(legend.text.position = "bottom",
                legend.margin = ggplot2::margin(t = 0, r = 0, b = -25, l = 0, unit = "pt"))
 
 # ------------------------------------------------------------
+# Rename and Select
+
+data_frame |> 
+  dplyr::rename(new_name_1 = old_name_1,
+                new_name_2 = old_name_2) |> 
+  dplyr::select(new_name_1,
+                new_name_2)
+
+# can be combined to go both at the same time....
+
+data_frame |> 
+  dplyr::select(new_name_1 = old_name_1,
+                new_name_2 = old_name_2)
+
+# ------------------------------------------------------------
 # Multiple Sourcing
 
 source("R/function_1.R")

@@ -88,7 +88,7 @@ snippet bind_rows
 	
 snippet left_join
 	dplyr::left_join(y = ${1:data_frame},
-									 by = join_by(${2:column_name} == ${3:column_name})
+									 by = dplyr::join_by(${2:column_name} == ${3:column_name})
 									 
 snippet ggplot
 	ggplot2::ggplot(data = ${1},
